@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <project>                                  
-  <executable name="dist/AWS_IOT/production/AVRIoT.X.production.elf">                 
+  <executable name="dist/AWS_IOT/production/AVRIoT-AWS-Bed-Sensor.X.production.elf">                 
     <memory name="program">              
       <units>bytes</units>                 
       <length>49152</length>                 

@@ -48,7 +48,7 @@
 // The threshold value in Deg C. The temperature reading needs to decrease with this value in order to trigger "occupancy: false" state.
 #define threshHoldDec 10
 // Initializing variables for occupancy algorithm.
-uint16_t pix_data = 0;
+uint16_t lastReading = 0;
 int16_t seqData[40] = {0};
 bool occuPix = 0;
 bool occuPixFlag = false;
@@ -82,7 +82,7 @@ bool SENSORS_getOccupancy(void) {
   for (j = 0; j < 39; j++){
     seqData[39 - j] = seqData[38 - j];
   }
-  seqData[0] = pix_data;            
+  seqData[0] = lastReading;            
   if (totalCount <= comparingNumInc){
     totalCount++;
   }
@@ -129,7 +129,7 @@ int16_t SENSORS_getOmronTemperature (void)
     //Convert the raw hex values to integer according to the sensor's documentation.     
     temperature = 256*buf[3] + buf[2] ;
     //Assign pix_data variable the value of the acquired temperature reading. This is needed for the occupancy algorithm.
-    pix_data = temperature;
+    lastReading = temperature;
     //Call the judge occupancy function which will return the occupancy state.
     SENSORS_getOccupancy();
     
